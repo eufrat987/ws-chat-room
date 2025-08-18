@@ -1,11 +1,58 @@
 <html>
-	<head></head>
-	<body>
-		<p id="msg"></p>
-		<textarea id="t"></textarea>
-		</p>
-		<button onclick="clicked()">Send</button>
+	<head>
+		<style>
+.container {
+	display: grid;
+	grid-template-columns: 2fr 3fr;
+	grid-auto-rows: minmax(30px, auto); 
+}
+	.header {
+		grid-column-start: 1;
+		grid-column-end: 3;
+		grid-row-start: 1;
+		grid-row-end: 2;
+		background-color: red;
+	}
+	.sidebar {
+		grid-column-start: 1;
+		grid-column-end: 2;
+		grid-row-start: 2;
+		grid-row-end: 5; 
+		background-color: blue;
+	}
+	.chat {
+		grid-column-start: 2;
+		grid-row-start: 2;
+		grid-row-end: 4;
+		background-color: orange;
+	}
+	.messagebox {
+		grid-column-start: 2;
+		grid-row-start: 4;
+		background-color: green;
+	}
+		
 
+		</style>
+
+	</head>
+	<body>
+		<div class="container">
+			<div class="header"> Header </div>
+			<div class="sidebar"> Sidebar </div>
+			<div class="chat"> Chat </div>
+			<div class="messagebox"> Mesage box </div>
+
+
+		</div>
+
+		<!--
+			<textarea id="msg"></textarea>
+			</p>
+			<textarea id="t"></textarea>
+			</p>
+			<button onclick="clicked()">Send</button>
+		-->
 		<script>
 			function clicked() {
 				console.log("click2 " + t.value);
@@ -25,8 +72,7 @@
 			};
 
 			ws.onmessage = function message(data) {
-				lastMsg = data;
-				m.textContent += data.data + "\r\n";
+				m.innerHTML += data.data + '\n';
 				console.log('received: %s', data);
 			};
 		</script>
