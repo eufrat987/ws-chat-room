@@ -31,7 +31,7 @@
 		grid-row-start: 4;
 		background-color: green;
 	}
-		
+
 
 		</style>
 
@@ -40,30 +40,30 @@
 		<div class="container">
 			<div class="header"> Header </div>
 			<div class="sidebar"> Sidebar </div>
-			<div class="chat"> Chat </div>
-			<div class="messagebox"> Mesage box </div>
+			<div class="chat"> 
+				<div id="msgs"> </div>
+			</div>
+
+			<div class="messagebox"> 
+				<textarea id="newmsg"> </textarea>
+			</div>
 
 
 		</div>
 
-		<!--
-			<textarea id="msg"></textarea>
-			</p>
-			<textarea id="t"></textarea>
-			</p>
-			<button onclick="clicked()">Send</button>
-		-->
 		<script>
-			function clicked() {
-				console.log("click2 " + t.value);
-
-				ws.send(t.value);
-			}
-			var lastMsg = "";
 
 			const ws = new WebSocket('ws://localhost:8080');
-			var m = document.getElementById("msg");
-			var t = document.getElementById("t");
+
+			const newMsg = document.getElementById("newmsg");
+			const msgs = document.getElementById("msgs");
+
+			newMsg.addEventListener("keypress", function(e) {
+				if (e.key == "Enter") {
+					ws.send(newMsg.value);
+					newMsg.value = "";
+				}
+			});
 
 			ws.onerror = console.error;
 
@@ -72,7 +72,9 @@
 			};
 
 			ws.onmessage = function message(data) {
-				m.innerHTML += data.data + '\n';
+				const tmp = document.createElement("div");
+				tmp.innerHTML = data.data;
+				msgs.appendChild(tmp);
 				console.log('received: %s', data);
 			};
 		</script>
