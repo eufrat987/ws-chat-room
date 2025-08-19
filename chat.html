@@ -4,7 +4,7 @@
 .container {
 	display: grid;
 	grid-template-columns: 2fr 3fr;
-	grid-auto-rows: minmax(30px, auto); 
+	grid-auto-rows: 2fr 50fr 10fr;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -22,18 +22,18 @@
 		grid-column-start: 1;
 		grid-column-end: 2;
 		grid-row-start: 2;
-		grid-row-end: 5; 
+		grid-row-end: 4; 
 		background-color: blue;
 	}
 	.chat {
 		grid-column-start: 2;
 		grid-row-start: 2;
-		grid-row-end: 4;
+		grid-row-end: 3;
 		background-color: orange;
 	}
 	.messagebox {
 		grid-column-start: 2;
-		grid-row-start: 4;
+		grid-row-start: 3;
 		background-color: green;
 	}
 
