@@ -3,7 +3,7 @@
 		<style>
 .container {
 	display: grid;
-	grid-template-columns: 2fr 3fr;
+	grid-template-columns: minmax(300px, 2fr) 6fr;
 	grid-auto-rows: 2fr 50fr 10fr;
 	top: 0;
 	left: 0;
@@ -48,7 +48,9 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="header"> Header </div>
+			<div class="header"> 
+				<p id="myname"></p>
+			</div>
 			<div class="sidebar"> Sidebar </div>
 			<div class="chat"> 
 				<div id="msgs"> </div>
@@ -62,11 +64,14 @@
 		</div>
 
 		<script>
+			const user = Math.random().toString(36).slice(2,10);
 
 			const ws = new WebSocket('ws://localhost:8080');
 
 			const newMsg = document.getElementById("newmsg");
 			const msgs = document.getElementById("msgs");
+			const myName = document.getElementById("myname");
+			myName.innerHTML = user;
 
 			newMsg.addEventListener("keypress", function(e) {
 				if (e.key == "Enter") {
