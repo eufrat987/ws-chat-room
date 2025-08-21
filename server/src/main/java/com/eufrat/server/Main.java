@@ -8,6 +8,7 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.eufrat.server.handler.ChatWebSocketHandler;
 
 @SpringBootApplication
 @EnableWebSocket
@@ -22,8 +23,7 @@ public class Main {
 
 			@Override
 			public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-				registry.addHandler(new TextWebSocketHandler() {
-				}, "/").setAllowedOriginPatterns("*");
+				registry.addHandler(new ChatWebSocketHandler(), "/").setAllowedOriginPatterns("*");
 			}
 		};
 	}
