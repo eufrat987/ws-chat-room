@@ -18,5 +18,10 @@ wss.on('connection', function connection(ws) {
 	};
 
 	ws.send('server connected');
+
+	ws.onclose = () => {
+		clients.remove(ws);
+		console.log("closed");
+	}
 });
 

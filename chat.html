@@ -75,18 +75,24 @@
 
 			newMsg.addEventListener("keypress", function(e) {
 				if (e.key == "Enter") {
-					ws.send(newMsg.value);
+					ws.send(user + ' ' + newMsg.value);
 					newMsg.value = "";
 				}
 			});
 
 			ws.onerror = console.error;
 
-			ws.onopen = function open() {
-				ws.send('client connected');
+			ws.onopen = () => {
+				ws.send(user + ' client connected');
 			};
 
-			ws.onmessage = function message(data) {
+			ws.onclose = () => {
+
+				console.log("closed");
+				
+			}
+
+			ws.onmessage = (data) =>  {
 				const tmp = document.createElement("div");
 				tmp.innerHTML = data.data;
 				msgs.appendChild(tmp);
