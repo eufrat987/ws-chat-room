@@ -1,46 +1,46 @@
 <html>
 	<head>
 		<style>
-.container {
-	display: grid;
-	grid-template-columns: minmax(300px, 2fr) 6fr;
-	grid-auto-rows: 2fr 50fr 10fr;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	position: absolute;
-}
-	.header {
-		grid-column-start: 1;
-		grid-column-end: 3;
-		grid-row-start: 1;
-		grid-row-end: 2;
-		background-color: red;
-	}
-	.sidebar {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		grid-row-start: 2;
-		grid-row-end: 4; 
-		background-color: blue;
-	}
-	.chat {
-		grid-column-start: 2;
-		grid-row-start: 2;
-		grid-row-end: 3;
-		background-color: orange;
-	}
-	.messagebox {
-		grid-column-start: 2;
-		grid-row-start: 3;
-		background-color: green;
-	}
-	#newmsg {
-		position: relative;
-		height: 100%;
-		width: 100%;
-	}
+			.container {
+				display: grid;
+				grid-template-columns: minmax(300px, 2fr) 6fr;
+				grid-auto-rows: 2fr 50fr 10fr;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				position: absolute;
+			}
+			.header {
+				grid-column-start: 1;
+				grid-column-end: 3;
+				grid-row-start: 1;
+				grid-row-end: 2;
+				background-color: red;
+			}
+			.sidebar {
+				grid-column-start: 1;
+				grid-column-end: 2;
+				grid-row-start: 2;
+				grid-row-end: 4; 
+				background-color: blue;
+			}
+			.chat {
+				grid-column-start: 2;
+				grid-row-start: 2;
+				grid-row-end: 3;
+				background-color: orange;
+			}
+			.messagebox {
+				grid-column-start: 2;
+				grid-row-start: 3;
+				background-color: green;
+			}
+			#newmsg {
+				position: relative;
+				height: 100%;
+				width: 100%;
+			}
 
 
 		</style>
@@ -89,7 +89,7 @@
 			ws.onclose = () => {
 
 				console.log("closed");
-				
+
 			}
 
 			ws.onmessage = (data) =>  {

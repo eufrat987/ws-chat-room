@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<style>
+		
+		.background {
+			background: red;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			position: absolute;;
+		}
+
+		.container {
+			height: 40%;
+			width: 30%;
+			background: blue;
+			top: 25%;
+			left: 35%;
+			border-radius: 10px;
+			box-shadow: black;
+			position: relative;
+		}
+
+		form {
+			display: block;
+			text-align: center;
+			
+		}
+
+
+		</style>
 
 	</head>
 
 	<body>
+		<div class="background">
+			<div class="container">
+				<form action="/chat" method="post">
+					<input type="text" name="username" placeholder="Enter username" required/>
+					<button type="submit">Enter chat</button>
+				</form>
+			</div>
 
-		<form action="/chat" method="post">
-			<input type="text" name="username" placeholder="Enter username" required/>
-			<button type="submit">Enter chat</button>
-		</form>
+
+		</div>
+
 
 	</body>
 
