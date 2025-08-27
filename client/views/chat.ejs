@@ -64,7 +64,7 @@
 		</div>
 
 		<script>
-			const user = Math.random().toString(36).slice(2,10);
+			const user = "<%= username %>"
 
 			const ws = new WebSocket('ws://localhost:8080');
 

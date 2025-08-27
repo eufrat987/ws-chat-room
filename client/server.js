@@ -1,13 +1,20 @@
 const express = require('express')
-const path = require('path')
 
 const app = express()
 const PORT = 3000
 
-app.use(express.static(path.join(__dirname, 'public')))
+
+app.set('view engine', 'ejs')
+
+app.use(express.urlencoded({ extended : true }))
 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, 'public/chat.html'))
+	res.render('login')
+})
+
+app.post('/chat', (req, res) => {
+	const userName = req.body.username
+	res.render('chat', {'username': userName})                        
 })
 
 app.listen(PORT, () => {
