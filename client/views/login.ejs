@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<style>
-		
-		.background {
-			background: red;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			position: absolute;;
-		}
-
-		.container {
-			height: 40%;
-			width: 30%;
-			background: blue;
-			top: 25%;
-			left: 35%;
-			border-radius: 10px;
-			box-shadow: black;
-			position: relative;
-		}
-
-		form {
-			display: block;
-			text-align: center;
-			
-		}
+  <head>
+    <style>
 
 
-		</style>
 
-	</head>
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightcoral;
+  height: 100vh;
+}
 
-	<body>
-		<div class="background">
-			<div class="container">
-				<form action="/chat" method="post">
-					<input type="text" name="username" placeholder="Enter username" required/>
-					<button type="submit">Enter chat</button>
-				</form>
-			</div>
+.container {
+  padding: 2rem;
+  max-width: 60%;
+  width: 300px;
+  border: 1px black solid;
+  background-color: azure;
+}
 
 
-		</div>
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input, button {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  margin-top: 0;
+  text-align: center;
+}
 
 
-	</body>
+    </style>
 
+  </head>
+
+  <body>
+    <div class="container">
+      <h2> Login </h2>
+      <form action="/chat" method="post">
+	<input type="text" name="username" 
+			   placeholder="Enter username" 
+			   required/>
+	<button type="submit">Enter chat</button>
+      </form>
+    </div>
+  </body>
 </html>
