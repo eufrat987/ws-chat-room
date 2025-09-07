@@ -10,8 +10,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightcoral;
   height: 100vh;
+  background-image: url("/images/chat-background.jpg");
+  background-size: cover;
 }
 
 .container {
@@ -47,11 +48,23 @@ h2 {
     <div class="container">
       <h2> Login </h2>
       <form action="/chat" method="post">
-	<input type="text" name="username" 
+	<input id='username' type="text" name="username" 
 			   placeholder="Enter username" 
 			   required/>
-	<button type="submit">Enter chat</button>
+	<button id='button' type="submit">Enter chat</button>
       </form>
     </div>
+    <script>
+      const text = document.getElementById('username')
+      const button = document.getElementById('button')
+      text.focus()
+      text.addEventListener('keypress', (e) => {
+	if (e.key == 'Enter') {
+	  button.click()
+	} 
+
+      })
+    
+    </script>
   </body>
 </html>

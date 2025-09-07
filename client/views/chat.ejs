@@ -1,103 +1,84 @@
 <html>
-	<head>
-		<style>
-			.container {
-				display: grid;
-				grid-template-columns: minmax(300px, 2fr) 6fr;
-				grid-auto-rows: 2fr 50fr 10fr;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				position: absolute;
-			}
-			.header {
-				grid-column-start: 1;
-				grid-column-end: 3;
-				grid-row-start: 1;
-				grid-row-end: 2;
-				background-color: red;
-			}
-			.sidebar {
-				grid-column-start: 1;
-				grid-column-end: 2;
-				grid-row-start: 2;
-				grid-row-end: 4; 
-				background-color: blue;
-			}
+  <head>
+    <style>
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url("/images/chat-background.jpg");
+  background-size: cover;
+}
 			.chat {
-				grid-column-start: 2;
-				grid-row-start: 2;
-				grid-row-end: 3;
-				background-color: orange;
+			  width: 900px;
+			  max-width: 80%;
+			  height: 300px;
+			  max-height: 50%;
+			  background-color: orange;
 			}
 			.messagebox {
-				grid-column-start: 2;
-				grid-row-start: 3;
-				background-color: green;
+			  width: 900px;
+			  max-width: 80%;
+			  height: 100px;
+			  max-height: 20%;
+			  background-color: green;
 			}
 			#newmsg {
-				position: relative;
-				height: 100%;
-				width: 100%;
+			  height: 100%;
+			  width: 100%;
+			  position: relative;
 			}
 
 
-		</style>
+    </style>
 
-	</head>
-	<body>
-		<div class="container">
-			<div class="header"> 
-				<p id="myname"></p>
-			</div>
-			<div class="sidebar"> Sidebar </div>
-			<div class="chat"> 
-				<div id="msgs"> </div>
-			</div>
+  </head>
+  <body>
+    <div class="chat"> 
+      <div id="msgs"> </div>
+    </div>
 
-			<div class="messagebox"> 
-				<textarea id="newmsg"> </textarea>
-			</div>
+    <div class="messagebox"> 
+      <textarea id="newmsg"> </textarea>
+    </div>
 
 
-		</div>
 
-		<script>
-			const user = "<%= username %>"
+    <script>
+      const user = "<%= username %>"
+      const ws = new WebSocket('ws://localhost:8080');
 
-			const ws = new WebSocket('ws://localhost:8080');
+      const newMsg = document.getElementById("newmsg");
+      const msgs = document.getElementById("msgs");
 
-			const newMsg = document.getElementById("newmsg");
-			const msgs = document.getElementById("msgs");
-			const myName = document.getElementById("myname");
-			myName.innerHTML = user;
+      newMsg.focus();
 
-			newMsg.addEventListener("keypress", function(e) {
-				if (e.key == "Enter") {
-					ws.send(user + ' ' + newMsg.value);
-					newMsg.value = "";
-				}
-			});
+      newMsg.addEventListener("keypress", function(e) {
+	if (e.key == "Enter") {
+	  ws.send(user + ' ' + newMsg.value);
+	  e.preventDefault();
+	  newMsg.value = '';
+	}
+      });
 
-			ws.onerror = console.error;
+      ws.onerror = console.error;
 
-			ws.onopen = () => {
-				ws.send(user + ' client connected');
-			};
+      ws.onopen = () => {
+	ws.send(user + ' client connected');
+      };
 
-			ws.onclose = () => {
+      ws.onclose = (event) => {
+	console.log("closed", event.code, event.reason);
+      }
 
-				console.log("closed");
-
-			}
-
-			ws.onmessage = (data) =>  {
-				const tmp = document.createElement("div");
-				tmp.innerHTML = data.data;
-				msgs.appendChild(tmp);
-				console.log('received: %s', data);
-			};
-		</script>
-	</body>
+      ws.onmessage = (data) =>  {
+	const tmp = document.createElement("div");
+	tmp.innerHTML = data.data;
+	msgs.appendChild(tmp);
+	console.log('received: %s', data);
+      };
+    </script>
+  </body>
 </html>
