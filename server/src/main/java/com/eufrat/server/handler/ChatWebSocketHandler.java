@@ -16,9 +16,9 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
   public void handleTextMessage(WebSocketSession session, TextMessage message) 
     throws InterruptedException, IOException {
     System.out.println("Received: " + message.getPayload());
-    //for (var s: sessions) {
-    //  s.sendMessage(message.getPayload());
-    //}
+    for (var s: sessions) {
+      s.sendMessage(message);
+    }
   }
 
   @Override
