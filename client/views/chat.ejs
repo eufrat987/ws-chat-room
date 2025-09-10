@@ -48,7 +48,7 @@ body {
 
     <script>
       const user = "<%= username %>"
-      const ws = new WebSocket('ws://localhost:8080');
+      const ws = new WebSocket('ws://<%= process.env.BACKEND_URL %>');
 
       const newMsg = document.getElementById("newmsg");
       const msgs = document.getElementById("msgs");

@@ -27,10 +27,10 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     sessions.add(session);
   }
 
-  @Override
-  public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-    System.out.println("Connection closed");
-  }
+  //@Override
+  //public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+  //  System.out.println("Connection closed");
+  //}
 
   @Override
   public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
